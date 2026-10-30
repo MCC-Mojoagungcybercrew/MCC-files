@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- SEO BIAR KETEMU DI TV & GOOGLE -->
+<title>MCC - Mojoagung Cyber Crew | Official Base</title>
+<meta name="description" content="MCC Mojoagung Cyber Crew Official Base - Komunitas Cyber Jombang, Solid Loyal Tumbuh">
+<meta name="keywords" content="MCC, Mojoagung Cyber Crew, MCC Jombang, Cyber Crew, Mojoagung">
+<meta name="author" content="Mccthsuh">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="MCC - Mojoagung Cyber Crew">
+<meta property="og:description" content="Official Base Mojoagung Cyber Crew">
+<meta property="og:type" content="website">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Courier New',monospace}
+body{background:#000;color:#e0e0e0;min-height:100vh;display:flex;justify-content:center;align-items:center;flex-direction:column}
+.public{border:2px solid red;padding:30px;background:#0a0a0a;text-align:center;width:90%;max-width:600px;box-shadow:0 0 20px red;margin-top:20px}
+.login{border:2px solid red;padding:30px;background:#0a0a0a;text-align:center;width:90%;max-width:400px;box-shadow:0 0 20px red;display:none}
+input{width:100%;padding:12px;background:#111;border:1px solid #333;color:red;text-align:center;margin-top:15px;letter-spacing:2px}
+button{width:100%;padding:12px;background:red;color:#000;font-weight:bold;border:none;margin-top:15px;cursor:pointer}
+#member,#founder{display:none;width:95%;max-width:1000px;padding:20px}
+.card{border:1px solid #222;background:#0a0a0a;padding:20px;margin-top:15px}
+textarea{width:100%;height:100px;background:#111;color:#0f0;border:1px solid red;padding:10px;margin-top:10px}
+#terminal{background:#000;border:1px solid #0f0;height:280px;overflow:auto;padding:10px;color:#0f0;font-size:12px;margin-top:10px}
+.file-item{display:flex;justify-content:space-between;align-items:center;background:#111;border:1px solid #333;padding:10px;margin-top:8px;font-size:12px}
+.dl{width:auto;padding:6px 12px;background:#222;color:#0f0;border:1px solid #0f0;font-size:11px;margin:0;cursor:pointer}
+.cmdline{display:flex;gap:5px;margin-top:5px;background:#111;padding:5px;border:1px solid #333}
+.cmdline input{margin:0;text-align:left;border:none;outline:none;color:#0f0;background:#111}
+</style>
+</head>
+<body>
+
+<!-- HALAMAN PUBLIC - INI YANG BISA KETEMU DI GOOGLE TV -->
+<div class="public" id="publicPage">
+<h1 style="color:red;font-size:28px">MCC</h1>
+<h2 style="color:#fff;font-size:14px;letter-spacing:4px">MOJOAGUNG CYBER CREW</h2>
+<p style="color:#0f0;margin-top:10px;font-size:12px">OFFICIAL BASE // EST. JOMBANG</p>
+<p style="color:#888;margin-top:15px;font-size:11px;line-height:1.6">Komunitas Cyber Mojoagung<br>Solid - Loyal - Tumbuh<br><br>Website ini adalah markas resmi MCC.<br>Untuk akses member, silahkan login.</p>
+<button onclick="showLogin()" style="margin-top:20px">🔐 MASUK BASE MCC</button>
+<p style="color:#444;font-size:9px;margin-top:20px">© 2026 MCC - Found by haydar | Cloud: a9cba412ac8125aaa94c</p>
+</div>
+
+<div class="login" id="loginBox">
+<h2 style="color:red">SECURE ACCESS</h2>
+<p style="color:#666;font-size:11px">RESTRICTED - AUTHORIZED ONLY</p>
+<input type="password" id="pass" placeholder="KODE AKSES">
+<button onclick="masuk()">MASUK</button>
+<button onclick="showPublic()" style="background:#222;color:#888;margin-top:5px">KEMBALI</button>
+<p id="err" style="color:red;font-size:12px;margin-top:10px;min-height:18px"></p>
+</div>
+
+<div id="member">
+<h1 style="color:red">/// MEMBER BASE ///</h1>
+<p style="color:#0f0">VERIFIED | CLOUD ACTIVE</p>
+<div class="card" style="border-color:#0f0"><h3 style="color:#0f0">[MISI LIVE]</h3><p id="misiTampil" style="white-space:pre-line;color:#0f0">Loading...</p><button onclick="loadMisi()" style="background:#111;color:#0f0;border:1px solid #0f0;margin-top:10px">🔄 REFRESH</button></div>
+<div class="card"><h3 style="color:#0f0">[DOWNLOAD PACK]</h3>
+<div class="file-item"><div>📦 toolbox.zip</div><button class="dl" onclick="downloadZip('toolbox')">DL</button></div>
+<div class="file-item"><div>📦 data.zip</div><button class="dl" onclick="downloadZip('data')">DL</button></div>
+<div class="file-item"><div>📦 design.zip</div><button class="dl" onclick="downloadZip('design')">DL</button></div>
+<div class="file-item" style="border-color:red"><div>📦 ALL-IN-ONE.zip</div><button class="dl" style="background:red;color:#000" onclick="downloadZip('all')">DL ALL</button></div>
+</div>
+<button onclick="location.reload()" style="width:auto;background:#333;color:#fff;margin-top:15px">LOGOUT</button>
+</div>
+
+<div id="founder">
+<h1 style="color:red">/// FOUNDER ROOT ///</h1>
+<div class="card"><h3 style="color:#0f0">[SET MISI]</h3><textarea id="misiInput" placeholder="Ketik misi..."></textarea><button onclick="saveMisi()">SAVE & BROADCAST</button><p id="statusMisi" style="color:#0f0;font-size:12px;margin-top:10px"></p></div>
+<div class="card"><h3 style="color:#0f0">[ZIP PACK]</h3><div style="display:flex;gap:5px"><button onclick="downloadZip('toolbox')" style="background:#0f0;color:#000">TOOLBOX</button><button onclick="downloadZip('data')" style="background:#0ff;color:#000">DATA</button><button onclick="downloadZip('design')" style="background:#ff0;color:#000">DESIGN</button></div><button onclick="downloadZip('all')" style="background:red;margin-top:5px">ALL-IN-ONE</button></div>
+<div class="card" style="border-color:#0f0"><h3 style="color:#0f0">[TERMINAL PRO]</h3><div id="terminal"><div>ROOT v8 - Ready</div></div><div class="cmdline"><span style="color:#0f0">root@mcc:~#</span><input id="cmd" type="text" onkeydown="if(event.key==='Enter')run()"></div></div>
+<button onclick="location.reload()" style="width:auto;background:#333;color:#fff">LOGOUT</button>
+</div>
+
+<script>
+const CLOUD_URL = "https://api.npoint.io/a9cba412ac8125aaa94c";
+function showLogin(){ document.getElementById('publicPage').style.display='none'; document.getElementById('loginBox').style.display='block'; }
+function showPublic(){ document.getElementById('publicPage').style.display='block'; document.getElementById('loginBox').style.display='none'; }
+async function masuk(){ let p=document.getElementById('pass').value.trim(); let err=document.getElementById('err'); if(p==='Mccthsuh'){document.getElementById('loginBox').style.display='none';document.getElementById('founder').style.display='block';await loadMisiFounder();} else if(p==='MCc@HF'){document.getElementById('loginBox').style.display='none';document.getElementById('member').style.display='block';await loadMisi();} else { err.innerText='⛔ AKSES DITOLAK'; document.getElementById('pass').value=''; setTimeout(()=>{err.innerText='';},2000); } }
+async function saveMisi(){ let v=document.getElementById('misiInput').value; if(!v) return; localStorage.setItem('mcc_misi',v); document.getElementById('statusMisi').innerText='⏳ Uploading...'; try{await fetch(CLOUD_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({misi:v,waktu:new Date().toLocaleString(),by:'Mccthsuh'})}); document.getElementById('statusMisi').innerText='✅ SUKSES!';}catch(e){document.getElementById('statusMisi').innerText='⚠️ Lokal';} }
+async function loadMisi(){ let b=document.getElementById('misiTampil'); b.innerText='Loading...'; try{let r=await fetch(CLOUD_URL);let d=await r.json();let t=d.misi||localStorage.getItem('mcc_misi')||'Belum ada misi';localStorage.setItem('mcc_misi',t);b.innerText=t;}catch(e){b.innerText=localStorage.getItem('mcc_misi')||'Offline';} }
+async function loadMisiFounder(){ try{let r=await fetch(CLOUD_URL);let d=await r.json();if(d.misi) document.getElementById('misiInput').value=d.misi;}catch(e){} }
+function run(){ let input=document.getElementById('cmd'); let c=input.value.trim(); let t=document.getElementById('terminal'); if(!c) return; t.innerHTML+='<div style="color:#fff">root@mcc:~# '+c+'</div>'; let out=''; let low=c.toLowerCase(); if(low==='help') out='help, clear, zip toolbox/data/design/all, set misi, broadcast'; else if(low==='clear'){t.innerHTML='';input.value='';return;} else if(low.startsWith('zip')){ if(low.includes('toolbox')){downloadZip('toolbox'); out='Downloading toolbox';} else if(low.includes('data')){downloadZip('data'); out='Downloading data';} else if(low.includes('design')){downloadZip('design'); out='Downloading design';} else if(low.includes('all')){downloadZip('all'); out='Downloading all';} else out='zip toolbox/data/design/all'; } else if(low.startsWith('set misi')){ let teks=c.substring(9); document.getElementById('misiInput').value=teks; saveMisi(); out='Broadcast: '+teks; } else if(low.startsWith('cat')) out=localStorage.getItem('mcc_misi')||'Kosong'; else out='Not found'; t.innerHTML+='<div style="color:#0f0">'+out+'</div>'; t.scrollTop=t.scrollHeight; input.value=''; }
+async function downloadZip(type){ const zip=new JSZip(); let misi=localStorage.getItem('mcc_misi')||'Belum ada misi'; try{let r=await fetch(CLOUD_URL);let d=await r.json();if(d.misi) misi=d.misi;}catch(e){} if(type==='toolbox'){zip.file("README.txt","MCC TOOLBOX");zip.file("MISI.txt",misi);} else if(type==='data'){zip.file("MISI.txt",misi);zip.file("MEMBER.txt","Member");} else if(type==='design'){zip.file("LOGO.txt","MCC");} else if(type==='all'){zip.file("data/MISI.txt",misi);} let fileName=type==='all'?'MCC-ALL-IN-ONE.zip':'MCC-'+type.toUpperCase()+'.zip'; const content=await zip.generateAsync({type:'blob'}); const a=document.createElement('a'); a.href=URL.createObjectURL(content); a.download=fileName; a.click(); }
+</script>
+</body>
+</html>
